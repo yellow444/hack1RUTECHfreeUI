@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="hack1RUTECHfreeUI.Views.Profile.ChatProfilePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:viewModel="clr-namespace:hack1RUTECHfreeUI.ViewModels.Profile"
+    Title="Profile Page"
+    BackgroundColor="{DynamicResource Gray-White}"
+    NavigationPage.HasNavigationBar="False">
+
+
+
+    <!--  Binding context for Profile Page  -->
+    <ContentPage.BindingContext>
+        <viewModel:ChatProfileViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <ScrollView>
+
+            <StackLayout>
+
+                <!--  Title  -->
+                <Grid Padding="10,20,10,10">
+                    <Label
+                        Grid.ColumnSpan="2"
+                        FontFamily=""
+                        HorizontalOptions="Center"                        
+                        Text="Profile" />
+                </Grid>
+
+       
+
+                <!--  Profile image with edit label  -->
+                <buttons:SfButton
+                    Margin="0,10,0,0"
+                    BackgroundColor="Transparent"
+                    BorderColor="{DynamicResource Gray-White}"
+                    BorderWidth="2"
+                    Command="{Binding EditCommand}"
+                    CornerRadius="60"
+                    HorizontalOptions="Center"
+                    WidthRequest="120">
+                    <buttons:SfButton.Content>
+                        <Grid HeightRequest="120" WidthRequest="120">
+
+                            <Image
+                                x:Name="ProfileImage"
+                                Aspect="AspectFill"
+                                BackgroundColor="{DynamicResource Gray-200}" />
+                            <BoxView
+                                BackgroundColor="{DynamicResource Gray-Black}"
+                                HeightRequest="32"
+                                Opacity="0.6"
+                                VerticalOptions="End" />
+                            <Label
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                FontSize="12"
+                                HeightRequest="32"
+                                HorizontalTextAlignment="Center"
+                                Text="EDIT"
+                                TextColor="{DynamicResource Gray-White}"
+                                VerticalOptions="End"
+                                VerticalTextAlignment="Center" />
+                        </Grid>
+                    </buttons:SfButton.Content>
+                </buttons:SfButton>
+
+                <!--  Profile Name  -->
+                <Label
+                    x:Name="LbNameentry"
+                    Margin="0,10,0,10"
+                    FontFamily="{StaticResource Montserrat-Bold}"
+                    FontSize="16"
+                    HorizontalOptions="Center"
+                    Text="{Binding LbName}"
+                    TextColor="{DynamicResource Gray-900}"
+                    VerticalOptions="Center" />
+
+                <!--  Grid for available label and navigation icon  -->
+                <Grid
+                    x:Name="AvailableGrid"
+                    Padding="16"
+                    ColumnSpacing="16">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding AvailableCommand}" CommandParameter="{x:Reference AvailableGrid}" />
+                    </Grid.GestureRecognizers>
+
+                    <Label
+                        Grid.Column="0"                   
+                        Text=""
+                        TextColor="{StaticResource Green}" />
+
+                    <Label
+                        Grid.Column="1"                 
+                        Text="Available" />
+
+                    <Label
+                        Grid.Column="2"
+                        HorizontalOptions="End"/>
+                </Grid>
+
+             
+
+                <!--  Grid for mail id label and icon  -->
+                <Grid Padding="16" ColumnSpacing="16">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label
+                        Grid.Column="0"
+                        Text="" />
+
+                    <Label
+                        x:Name="LbMailentry"
+                        Grid.Column="1"
+
+                        Text="{Binding LbMail}" />
+
+                </Grid>
+
+             
+
+                <!--  Grid for mobile number label and icon  -->
+                <Grid Padding="16" ColumnSpacing="16">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label
+                        Grid.Column="0"
+                        Text="" />
+
+                    <Editor
+                        x:Name="EditorEntry"
+                        Grid.Column="1"
+                       HorizontalOptions="Start"
+                        Text=""/>
+                </Grid>
+
+             
+
+                <!--  Grid for notification label and navigation icon  -->
+                <Grid
+                    x:Name="NotificationGrid"
+                    Padding="16"
+                    ColumnSpacing="16">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NotificationCommand}" CommandParameter="{x:Reference NotificationGrid}" />
+                    </Grid.GestureRecognizers>
+
+                    <Label
+                        Grid.Column="0"
+                        Text="" />
+                </Grid>
+               
+
+                <!--  Grid for help label and icon  -->
+                <Grid Padding="16" ColumnSpacing="16">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label
+                        Grid.Column="0"
+                        Text="" />
+                    <Button Text="Menu" HorizontalOptions="Start"  Command="{Binding OpenCommand}"/>
+                </Grid>
+           
+
+            </StackLayout>
+
+        </ScrollView>
+        
+    </ContentPage.Content>
+ 
+
+</ContentPage>

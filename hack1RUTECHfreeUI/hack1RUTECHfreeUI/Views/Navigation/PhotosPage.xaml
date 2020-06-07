@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="hack1RUTECHfreeUI.Views.Navigation.PhotosPage"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"            
+             xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             BackgroundColor="{DynamicResource Gray-White}"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid Padding="10,10,10,5">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <!--  Title  -->
+                <Label
+                    FontFamily="{StaticResource Montserrat-Medium}"
+                    FontSize="16"
+                    HorizontalOptions="CenterAndExpand"
+                    LineHeight="{OnPlatform Android=1.5,
+                                            Default=-1}"
+                    Text="Round Tables"
+                    TextColor="{DynamicResource Gray-900}"
+                    VerticalOptions="Center" />
+
+                <!--  Add button  -->
+                <buttons:SfButton
+                    Padding="0"
+                    BackgroundColor="{DynamicResource Gray-White}"
+                    Command="{Binding EditCommand}"
+                    CornerRadius="5"
+                    FontFamily="{StaticResource FontIcons}"
+                    FontSize="18"
+                    HorizontalOptions="End"
+                    Text="{StaticResource EditIcon}"
+                    TextColor="{DynamicResource Gray-600}"
+                    VerticalOptions="Center"
+                    WidthRequest="40" />
+
+            </Grid>
+            
+            <BoxView Style="{StaticResource BoxViewStyle}" />
+
+            <listView:SfListView ItemsSource="{Binding Photos}" 
+                                 Padding="15,0,15,15"
+                                 ItemSize="90" 
+                                 ItemSpacing="4"  
+                                 IsScrollBarVisible="False"
+                                 SelectionBackgroundColor="Transparent"              
+                                 TapCommand="{Binding ImageTapCommand}">
+
+
+
+
+
+                <listView:SfListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid BackgroundColor="{DynamicResource Gray-200}">
+                            <Image Aspect="AspectFill"
+                                   BackgroundColor="{DynamicResource Gray-200}"
+                                   HeightRequest="90" 
+                                   WidthRequest="114">
+                                  <Image.Source>
+                                      <UriImageSource Uri="{Binding ImageURL}"
+                                                      CacheValidity="14"
+                                                      CachingEnabled="true"/>
+                                </Image.Source>
+                            </Image>
+                        </Grid>
+                    </DataTemplate>
+                </listView:SfListView.ItemTemplate>
+
+                <listView:SfListView.LayoutManager>
+                    <listView:GridLayout SpanCount="{core:OnPlatformOrientationIntValue PhonePortrait=3,PhoneLandscape=5,TabletPortrait=6,TabletLandscape=10,Desktop=10}"/>
+                </listView:SfListView.LayoutManager>
+            </listView:SfListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
